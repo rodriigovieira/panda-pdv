@@ -1,0 +1,120 @@
+.modules {
+  background: var(--color-white);
+}
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-xl);
+}
+
+.module-card {
+  position: relative;
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.module-card:hover {
+  transform: translateY(-4px);
+}
+
+.module-orange {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border: 1px solid #fed7aa;
+}
+
+.module-rose {
+  background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+  border: 1px solid #fecdd3;
+}
+
+.module-amber {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border: 1px solid #fde68a;
+}
+
+.module-emerald {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border: 1px solid #a7f3d0;
+}
+
+.module-content {
+  position: relative;
+  z-index: 1;
+}
+
+.module-card h3 {
+  font-size: 1.5rem;
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-md);
+}
+
+.module-card p {
+  font-size: 1rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.module-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.module-features li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 0.9375rem;
+  color: var(--color-gray-700);
+}
+
+.module-orange .module-features svg {
+  color: #f97316;
+}
+
+.module-rose .module-features svg {
+  color: #f43f5e;
+}
+
+.module-amber .module-features svg {
+  color: #f59e0b;
+}
+
+.module-emerald .module-features svg {
+  color: #10b981;
+}
+
+.module-decoration {
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.module-orange .module-decoration {
+  background: #f97316;
+}
+
+.module-rose .module-decoration {
+  background: #f43f5e;
+}
+
+.module-amber .module-decoration {
+  background: #f59e0b;
+}
+
+.module-emerald .module-decoration {
+  background: #10b981;
+}
+
+@media (max-width: 768px) {
+  .modules-grid {
+    grid-template-columns: 1fr;
+  }
+}
