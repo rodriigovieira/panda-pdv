@@ -12,7 +12,7 @@ export default function TermsOfUse() {
 
         <section>
           <p>
-            Bem-vindo ao PandaPDV. Ao utilizar nossa plataforma, você concorda com 
+            Bem-vindo ao PandaPDV (CNPJ: 35.237.566/0001-16). Ao utilizar nossa plataforma, você concorda com 
             estes Termos de Uso. Por favor, leia-os atentamente.
           </p>
         </section>

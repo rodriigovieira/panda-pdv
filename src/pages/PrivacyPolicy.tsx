@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
 
         <section>
           <p>
-            A PandaPDV, plataforma de gestão para restaurantes, preza pela privacidade 
+            A PandaPDV (CNPJ: 35.237.566/0001-16), plataforma de gestão para restaurantes, preza pela privacidade 
             dos seus clientes e usuários, e se compromete a proteger as informações 
             pessoais coletadas e/ou armazenadas em seus sistemas.
           </p>

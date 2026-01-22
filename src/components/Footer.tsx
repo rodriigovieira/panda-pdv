@@ -46,6 +46,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <p>© {currentYear} PandaPDV. Todos os direitos reservados.</p>
+          <p>CNPJ: 35.237.566/0001-16 | E-mail: <a href="mailto:contato@pandapdv.com.br">contato@pandapdv.com.br</a></p>
           <p>Desenvolvido por <a href="https://tatsuki.com.br" target="_blank" rel="noopener noreferrer">Tatsuki</a></p>
         </div>
       </div>
