@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { sendDemoRequest } from '../services/slack'
+import { createDemoRestaurant, getAdminAppUrl } from '../services/demo'
 import './CTA.css'
 
 export default function CTA() {
@@ -10,30 +11,43 @@ export default function CTA() {
     whatsapp: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'creating' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    
+
     if (!formData.name || !formData.restaurantName || !formData.email || !formData.whatsapp) {
       alert('Por favor, preencha todos os campos.')
       return
     }
 
     setIsSubmitting(true)
-    setSubmitStatus('idle')
+    setSubmitStatus('creating')
+    setErrorMessage('')
 
     try {
-      const success = await sendDemoRequest(formData)
-      
-      if (success) {
-        setSubmitStatus('success')
-        setFormData({ name: '', restaurantName: '', email: '', whatsapp: '' })
-      } else {
-        setSubmitStatus('error')
-      }
-    } catch {
+      // Send Slack notification (non-blocking)
+      sendDemoRequest(formData).catch(console.error)
+
+      // Create demo restaurant
+      const result = await createDemoRestaurant({
+        ownerName: formData.name,
+        restaurantName: formData.restaurantName,
+        email: formData.email,
+        phone: formData.whatsapp,
+      })
+
+      setSubmitStatus('success')
+
+      // Redirect to admin app with custom token for auto-login
+      setTimeout(() => {
+        window.location.href = `${getAdminAppUrl()}/login?demo_token=${encodeURIComponent(result.customToken)}`;
+      }, 1500)
+    } catch (error: any) {
+      console.error('Error creating demo:', error)
       setSubmitStatus('error')
+      setErrorMessage(error.message || 'Ocorreu um erro ao criar sua demonstração.')
     } finally {
       setIsSubmitting(false)
     }
@@ -51,18 +65,17 @@ export default function CTA() {
               automatizar sua operação e aumentar seus resultados.
             </p>
             
-            {submitStatus === 'success' ? (
+            {submitStatus === 'creating' ? (
+              <div className="success-message">
+                <span className="success-icon">🔧</span>
+                <h3>Criando seu restaurante...</h3>
+                <p>Estamos preparando tudo para você. Isso pode levar alguns segundos.</p>
+              </div>
+            ) : submitStatus === 'success' ? (
               <div className="success-message">
                 <span className="success-icon">✅</span>
-                <h3>Solicitação enviada com sucesso!</h3>
-                <p>Entraremos em contato em até 24 horas.</p>
-                <button 
-                  type="button" 
-                  className="btn btn-secondary"
-                  onClick={() => setSubmitStatus('idle')}
-                >
-                  Enviar outra solicitação
-                </button>
+                <h3>Restaurante criado com sucesso!</h3>
+                <p>Redirecionando para o painel administrativo...</p>
               </div>
             ) : (
               <form className="cta-form" onSubmit={handleSubmit}>
@@ -114,11 +127,11 @@ export default function CTA() {
                   {isSubmitting ? (
                     <>
                       <span className="spinner"></span>
-                      Enviando...
+                      Criando seu restaurante...
                     </>
                   ) : (
                     <>
-                      Solicitar Demonstração Gratuita
+                      Criar Demonstração Gratuita
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                       </svg>
@@ -128,14 +141,14 @@ export default function CTA() {
                 
                 {submitStatus === 'error' && (
                   <p className="error-message">
-                    ❌ Ocorreu um erro ao enviar. Por favor, tente novamente.
+                    {errorMessage || 'Ocorreu um erro. Por favor, tente novamente.'}
                   </p>
                 )}
               </form>
             )}
             
             <p className="cta-note">
-              Sem compromisso. Resposta em até 24 horas.
+              Sem compromisso. Acesso instantâneo por 24 horas.
             </p>
           </div>
           
