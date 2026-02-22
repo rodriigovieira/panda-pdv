@@ -5,6 +5,7 @@ import Hero from './components/Hero'
 import Features from './components/Features'
 import Stats from './components/Stats'
 import Modules from './components/Modules'
+import Pricing from './components/Pricing'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
 import PrivacyPolicy from './pages/PrivacyPolicy'
@@ -19,6 +20,7 @@ function HomePage() {
         <Stats />
         <Features />
         <Modules />
+        <Pricing />
         <CTA />
       </main>
       <Footer />
