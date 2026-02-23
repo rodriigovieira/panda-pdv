@@ -43,10 +43,27 @@
   font-weight: 500;
   color: var(--color-gray-600);
   transition: color var(--transition-fast);
+  position: relative;
 }
 
 .nav-links a:hover {
   color: var(--color-primary);
+}
+
+.nav-links a.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 2px;
 }
 
 .nav-actions {

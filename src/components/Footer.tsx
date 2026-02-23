@@ -20,16 +20,17 @@ export default function Footer() {
             <div className="footer-column">
               <h4>Produto</h4>
               <ul>
-                <li><a href="#features">Funcionalidades</a></li>
-                <li><a href="#modules">Módulos</a></li>
-                <li><a href="#contact">Demonstração</a></li>
+                <li><Link to="/features">Funcionalidades</Link></li>
+                <li><Link to="/modules">Módulos</Link></li>
+                <li><Link to="/pricing">Preços</Link></li>
+                <li><Link to="/contact">Demonstração</Link></li>
               </ul>
             </div>
 
             <div className="footer-column">
               <h4>Empresa</h4>
               <ul>
-                <li><a href="#contact">Contato</a></li>
+                <li><Link to="/contact">Contato</Link></li>
                 <li><a href="mailto:contato@pandapdv.com.br">E-mail</a></li>
               </ul>
             </div>

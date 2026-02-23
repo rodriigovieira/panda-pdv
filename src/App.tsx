@@ -1,40 +1,29 @@
 import './index.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Header from './components/Header'
-import Hero from './components/Hero'
-import Features from './components/Features'
-import Stats from './components/Stats'
-import Modules from './components/Modules'
-import Pricing from './components/Pricing'
-import CTA from './components/CTA'
-import Footer from './components/Footer'
+import RootLayout from './layouts/RootLayout'
+import ScrollToTop from './components/ScrollToTop'
+import Home from './pages/Home'
+import Features from './pages/Features'
+import Modules from './pages/Modules'
+import Pricing from './pages/Pricing'
+import Contact from './pages/Contact'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsOfUse from './pages/TermsOfUse'
-
-function HomePage() {
-  return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        <Stats />
-        <Features />
-        <Modules />
-        <Pricing />
-        <CTA />
-      </main>
-      <Footer />
-    </>
-  )
-}
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/termos-de-uso" element={<TermsOfUse />} />
-        <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
+        <Route element={<RootLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/modules" element={<Modules />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/termos-de-uso" element={<TermsOfUse />} />
+          <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )
