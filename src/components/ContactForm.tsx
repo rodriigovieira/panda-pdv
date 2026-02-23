@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { sendContactMessage } from '../services/slack'
 import './ContactForm.css'
 
 export default function ContactForm() {
@@ -10,21 +11,27 @@ export default function ContactForm() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSubmitting(true)
+    setError(false)
 
-    // TODO: Replace with actual API call
-    // For now, just simulate submission
-    setTimeout(() => {
+    const success = await sendContactMessage(formData)
+
+    if (success) {
       setSubmitted(true)
-      setSubmitting(false)
       setFormData({ name: '', email: '', phone: '', message: '' })
 
-      // Reset success message after 3 seconds
-      setTimeout(() => setSubmitted(false), 3000)
-    }, 1000)
+      // Reset success message after 5 seconds
+      setTimeout(() => setSubmitted(false), 5000)
+    } else {
+      setError(true)
+      setTimeout(() => setError(false), 5000)
+    }
+
+    setSubmitting(false)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -44,6 +51,12 @@ export default function ContactForm() {
       {submitted && (
         <div className="success-message">
           ✓ Mensagem enviada com sucesso! Entraremos em contato em breve.
+        </div>
+      )}
+
+      {error && (
+        <div className="error-message">
+          ✗ Erro ao enviar mensagem. Por favor, tente novamente.
         </div>
       )}
 

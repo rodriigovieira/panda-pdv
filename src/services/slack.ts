@@ -5,6 +5,13 @@ export interface DemoRequestData {
   whatsapp: string;
 }
 
+export interface ContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
 // For local development, we need to call Slack directly since Vercel functions don't run locally
 // In production, we use the API route
 const isDev = import.meta.env.DEV;
@@ -72,6 +79,68 @@ export async function sendDemoRequest(data: DemoRequestData): Promise<boolean> {
     return await sendViaApi(data);
   } catch (error) {
     console.error('Error sending demo request to Slack:', error);
+    return false;
+  }
+}
+
+async function sendContactViaApi(data: ContactFormData): Promise<boolean> {
+  const response = await fetch('/api/send-contact-message', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    console.error('Error sending contact message:', errorData);
+    return false;
+  }
+
+  return true;
+}
+
+async function sendContactDirectToSlack(data: ContactFormData): Promise<boolean> {
+  if (!SLACK_WEBHOOK_URL) {
+    console.error('VITE_SLACK_WEBHOOK_URL environment variable is not set');
+    return false;
+  }
+
+  const message =
+    `📬 *Nova Mensagem de Contato - PandaPDV*\n\n` +
+    `👤 *Nome:* ${data.name}\n` +
+    `📧 *E-mail:* ${data.email}\n` +
+    `📱 *Telefone:* ${data.phone || 'Não informado'}\n` +
+    `💬 *Mensagem:*\n${data.message}\n\n` +
+    `🕐 *Data/Hora:* ${new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })}`;
+
+  const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(SLACK_WEBHOOK_URL);
+
+  const response = await fetch(proxyUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ text: message }),
+  });
+
+  if (!response.ok) {
+    console.error('Slack webhook error:', response.status, await response.text());
+    return false;
+  }
+
+  return true;
+}
+
+export async function sendContactMessage(data: ContactFormData): Promise<boolean> {
+  try {
+    if (isDev) {
+      return await sendContactDirectToSlack(data);
+    }
+    return await sendContactViaApi(data);
+  } catch (error) {
+    console.error('Error sending contact message to Slack:', error);
     return false;
   }
 }
