@@ -39,6 +39,19 @@
   gap: var(--spacing-xl);
 }
 
+@media (min-width: 769px) {
+  .nav-links {
+    position: static !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: all !important;
+    flex-direction: row !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+  }
+}
+
 .nav-links a {
   font-weight: 500;
   color: var(--color-gray-600);
