@@ -31,7 +31,6 @@ export default function Pricing() {
     <section id="pricing" className="pricing section">
       <div className="container">
         <div className="section-title">
-          <span className="badge">Planos</span>
           <h2>Investimento <span className="gradient-text">simples</span> e transparente</h2>
           <p>Tudo que você precisa em um único plano completo</p>
         </div>

@@ -38,7 +38,6 @@ export default function Features() {
     <section id="features" className="features section">
       <div className="container">
         <div className="section-title">
-          <span className="badge">Funcionalidades</span>
           <h2>Tudo que você precisa para <span className="gradient-text">gerenciar</span> seu restaurante</h2>
           <p>Módulos integrados que automatizam sua operação do início ao fim</p>
         </div>

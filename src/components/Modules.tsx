@@ -32,7 +32,6 @@ export default function Modules() {
     <section id="modules" className="modules section">
       <div className="container">
         <div className="section-title">
-          <span className="badge">Módulos</span>
           <h2>Ecossistema <span className="gradient-text">completo</span></h2>
           <p>Plataformas integradas que trabalham juntas para automatizar sua operação</p>
         </div>

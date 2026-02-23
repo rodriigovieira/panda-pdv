@@ -9,7 +9,6 @@ export default function CTA() {
       <div className="container">
         <div className="cta-card">
           <div className="cta-content">
-            <span className="badge">Comece agora</span>
             <h2>Pronto para transformar seu restaurante?</h2>
             <p>
               Crie sua conta gratuita e descubra como o PandaPDV pode
