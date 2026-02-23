@@ -1,0 +1,103 @@
+.contact-form-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--spacing-3xl) var(--spacing-md);
+}
+
+.contact-form-header {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+}
+
+.contact-form-header h2 {
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-md);
+}
+
+.contact-form-header p {
+  color: var(--color-gray-600);
+  font-size: 1.125rem;
+}
+
+.success-message {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  color: #065f46;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid #a7f3d0;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--color-gray-700);
+  font-size: 0.9375rem;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  color: var(--color-gray-900);
+  transition: all var(--transition-fast);
+  background: var(--color-white);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--color-gray-400);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form button[type="submit"] {
+  width: 100%;
+  justify-content: center;
+  margin-top: var(--spacing-md);
+}
+
+.contact-form button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .contact-form-wrapper {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+
+  .contact-form-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .contact-form {
+    gap: var(--spacing-lg);
+  }
+}
