@@ -6,7 +6,7 @@ export default function RootLayout() {
   return (
     <>
       <Header />
-      <main>
+      <main style={{ paddingTop: '120px' }}>
         <Outlet />
       </main>
       <Footer />
