@@ -71,7 +71,7 @@
 .pricing-subtitle {
   color: var(--color-gray-600);
   font-size: 1rem;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
 }
 
 .pricing-price {
@@ -79,7 +79,7 @@
   align-items: baseline;
   justify-content: center;
   gap: var(--spacing-xs);
-  margin: var(--spacing-xl) 0;
+  margin: var(--spacing-lg) 0;
 }
 
 .currency {
@@ -103,7 +103,7 @@
 .pricing-description {
   color: var(--color-gray-600);
   font-size: 1rem;
-  margin-top: var(--spacing-lg);
+  margin-top: var(--spacing-md);
 }
 
 .pricing-features {
