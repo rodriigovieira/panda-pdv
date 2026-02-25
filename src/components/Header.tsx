@@ -10,7 +10,7 @@ export default function Header() {
       <div className="container">
         <nav className="nav">
           <Link to="/" className="logo">
-            <span className="logo-icon">🐼</span>
+            <img src="/panda.png" alt="Panda" className="logo-icon" />
             <span className="logo-text">Panda<span className="logo-accent">PDV</span></span>
           </Link>
 

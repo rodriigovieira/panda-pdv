@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="footer-content">
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
-              <span className="logo-icon">🐼</span>
+              <img src="/panda.png" alt="Panda" className="logo-icon" />
               <span className="logo-text">Panda<span className="logo-accent">PDV</span></span>
             </Link>
             <p>Sistema completo para gestão de restaurantes. Simplifique sua operação e aumente seus resultados.</p>
